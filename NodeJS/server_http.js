@@ -30,10 +30,9 @@ let App = {
   // je crée ma méthode start
   // elle contient une fonction
   start: function (port) {
-    let emitter = new MyEmitter();
+    let emitter = new MyEmitter()
     // je démarre mon server
-    let server = http
-      .createServer((req, res) => {
+    let server = http.createServer((req, res) => {
         // je lui renvoi un en tête avec le code 200 | success
         res.writeHead(200);
         // je veux détecter quand je suis à la racine
@@ -51,10 +50,10 @@ let App = {
 let app = App.start(8080);
 
 // lorsque la page d'accueil est lancé je lance mon serveur
-app.on("root"),
+app.on("root",
   function (res) {
     res.write("je suis à la race");
-  };
+  });
 
  
 // let server = http.createServer();

@@ -7,7 +7,7 @@ exports.aurevoir = function hello() {
     console.log('Bye');
 }
 
-// // j'exporte ma fonction
+// // a other way to export
 // module.exports = {
 //     hello: hello
 // }

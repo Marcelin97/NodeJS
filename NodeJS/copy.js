@@ -1,13 +1,15 @@
-//? crée un script capable de copier un fichier
+//* crée un script capable de copier un fichier
+
+// j'importe l'object "fs" pour manipuler les fichiers
 let fs = require("fs");
 
-// // si je lis un fichier
+// // je lis un fichier
 // fs.readFile("demo.mp4", (err, data) => {
 //   if (err) throw err;
 //   // j'écris le fichier
 //   fs.writeFile("copy.mp4", data, (err) => {
 //     if (err) throw err;
-//     console.log("The file has been saved!");
+//     console.log("The new file has been saved!");
 //   });
 // });
 
@@ -32,13 +34,15 @@ fs.stat(file, (err, stat) => {
     console.log(`j'ai lu ${chunk.length}`);
     // savoir ou j'en suis dans la progression de lecture
     progress += chunk.length;
-    // en pourcentage
-    console.log("j'ai lu " + Math.round((100 * progress) / total) + "%");
+    // affichage en pourcentage
+    console.log("j'ai lu " + Math.round(100 * progress / total) + "%");
   });
 
   // https://nodejs.org/docs/latest-v14.x/api/stream.html#stream_readable_pipe_destination_options
+  // le pipe permets de branché deux streams ensemble. le stream de lecture attendra que l'écriture est fini le bloc avant de lui renvoyé des datas ce qui évite l'engorgement
   read.pipe(write);
 
+  // le finish on l'écoute sur l'écriture
   write.on('finish', () => {
     console.log('All writes are now complete.');
   });
